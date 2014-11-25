@@ -1,0 +1,232 @@
+%% -*- mode: Latex;-*-
+%% This is a GPP 'include' file
+%% The call to gpp would look like this:
+%%
+%% shell> c:\gpp\gpp.exe -o output.rtf +c "\n%%" "\n" -T input.rtf
+%%
+%% where input.rtf has this on its first two lines:
+%%
+%% {\rtf1\ansi\deff0
+%% \include{"include-rtf.gpp"}
+%%
+%% and has this on its last line:
+%%
+%% }
+%%
+%% The command line arguments specify TeX style macros and define
+%% as comment lines as those starting with two percent signs.
+%%
+%% This is the prolog macro that starts everything
+\define{\prolog}{
+{\info
+{\title}
+{\author}
+{\company }
+{\creatim \date{\yr%Y} \date{\mo%m} \date{\dy%d} \date{\hr%H} \date{\min%M}}
+}
+{\fonttbl
+{\f0\froman Times New Roman;}
+{\f1\fswiss Arial;}
+{\f2\fmodern Consolas;}
+}
+{\colortbl
+;
+\red0\green70\blue173;
+\red182\green0\blue20;
+\red169\green169\blue169;
+\red222\green235\blue247;
+\red255\green255\blue0;
+}
+\deflang1033\plain \ftnbj
+\paperw12240 \paperh15840 \margl1440 \margr1440 \margt1440 \margb1440
+%%{\footer\pard\qr\chpgn\par}
+}
+\define{documenttitle}{
+\titlepg
+{\headerf
+{\pard \cf1 \ql \f1 \fs32 \sb0 \sa160 \b
+#1
+\par}
+{\pard \cf0 \ql \f1 \fs28 \sb60 \sa60
+#2
+\par}
+{\pard \cf0 \ql \f1 \fs24 \sb60 \sa240\date{ %B %d, %Y}
+%% {\pard \cf0 \ql \f1 \fs24 \sb60 \sa240\chdate
+\brdrb \brdrs \brdrw25 \brsp20 \brdrcf3 \par}
+}
+{\footerf\pard{\fs16\f1 Printed \chdate  \chtime}\fs20 \f1\tqr\tx10080\tab  #3 | \chpgn\par}
+{\footer\pard{\fs16\f1 Printed \chdate  \chtime}\fs20 \f1\tqr\tx10080\tab #3 | \chpgn\par}
+{\headerf
+{\pard \cf1 \ql \f1 \fs32 \sb0 \sa160 \b
+#1
+\par}
+{\pard \cf0 \ql \f1 \fs28 \sb60 \sa60
+#2
+\par}
+{\pard \cf0 \ql \f1 \fs24 \sb60 \sa240\date{ %B %d, %Y}
+%% {\pard \cf0 \ql \f1 \fs24 \sb60 \sa240\chdate
+\brdrb \brdrs \brdrw25 \brsp20 \brdrcf3 \par}
+}
+}
+
+\define{\navigate}{{\pard \ql \sb240 \sa60 \f1 \fs24 \keepn \b Navigating this document\par}}
+\define{\contents}{{\pard \ql \sb240 \sa60 \f1 \fs24 \keepn \b Contents\par}}
+\define{\section}{{\pard \ql \sb240 \sa60 \f1 \fs24 \keepn \b \outlinelevel1 {\field{\fldinst{SEQ section}}}
+ #1
+\par}}
+\define{\appendix}{{\pard \ql \sb240 \sa60 \f1 \fs24 \keepn \b \outlinelevel1 Appendix {\field{\fldinst{SEQ appendix \\* ALPHABETIC}}}
+ #1
+\par}}
+\define{\subsection}{{\pard \ql \sb120 \sa120 \f1 \fs22 \keepn \b \i \outlinelevel2 
+#1
+\par}}
+\define{\subsubsection}{{\pard \ql \sb30 \sa30 \f1 \fs22 \keepn \i \outlinelevel3 
+#1
+\par}}
+\define{\paragraph}{{\pard \ql \sa60 \sb60 \f0 \fs24
+#1
+\par}}
+%%
+%% --------------------------------------
+%% This is for a figure legend or caption
+%% ======================================
+\define{\Figure}{{\pard \ql \sb120 \sa240 \f1 \fs22 \outlinelevel4 {\b Figure {\field{\fldinst{SEQ figure}}}.}
+ #1
+\par}}
+%%
+%% -------------------------
+%% This is for a table title
+%% =========================
+\define{\Table}{{\pard \ql \sa30 \sb240 \f1 \fs22 \outlinelevel4 {\b Table {\field{\fldinst{SEQ table}}}.}
+ #1
+\par}}
+%%
+%% This is a bulleted paragraph
+%% 
+\define{\bulletpoint}{{\pard \sb60 \sa60  \ql \li360 \fi-360 \f0 \fs24\bullet \tx360 \tab
+#1
+\par}}
+%%
+%% This is block quote extra spacing before and after, indented half inch on both sides
+%% 11 pt roman
+%% 
+%% http://practicaltypography.com/block-quotations.html
+\define{\blockquote}{{\pard \sb240 \sa240  \ql \li720 \ri720 \fs22
+#1
+\par}}
+
+
+
+%%
+%% These are formatting functions
+%%
+\define{\code}{{\f2 \fs22 #1}}
+\define{\filename}{{\f2 \fs22 #1}}
+\define{\dquote}{{{\ldblquote}#1{\rdblquote}}}
+\define{\squote}{{{\lquote}#1{\rquote}}}
+\define{\emph}{{\i #1}}
+%%
+%% These are unicode short cuts
+%%
+\define{\e4}{{\u949?}4}
+\define{\apoe}{{\i APOE}}
+\define{\e4pos}{{\u949?}4+}
+\define{\e4neg}{{\u949?}4{\u8722?}}
+\define{\minus}{{\u8722?}}
+\define{\le}{{\u8804?}}
+\define{\pm}{{\u177?}}
+\define{\ge}{{\u8805?}}
+\define{\ab42}{A{\u946?}{\sub 42}}
+\define{\abeta}{A{\u946?}}
+\define{\pvalue}{{\i P}-value}
+%%
+%%
+%% Define a hyperlink like \url{http://www.google.com}{Google}
+\define{\url}{
+{\\field{\\*\\fldinst{HYPERLINK "#1"}}{\fldrslt{\ul #2}}}
+}
+%%
+%%
+%% Section break to portrait
+%%  arguments follow R plot margins in terms of bottom, left, top, right
+%%  Note that an argument of x will give a margin of 1/x inches.
+%%  so that \sectp{2}{2}{2}{2} will give margins of 1/2 inch
+%%  This is insane but it's a shortcoming of gpp which doesn't do floating
+%%  point arithmetic. \exec{set /a 1440 / 2} is an alternative.
+%%  We could also use an R script which is executed
+\define{\sectp}{
+\sect\sectd
+\pgwsxn12240
+\pghsxn15840
+\marglsxn\eval{1440 / #2}
+\margrsxn\eval{1440 / #4}
+\margtsxn\eval{1440 / #3}
+\margbsxn\eval{1440 / #1}
+}
+%% Section break to landscape
+%%  arguments follow R plot margins in inches: bottom, left, top, right
+%% Example: \sectl{1}{2}{1}{2} gives inch on top
+\define{\sectl}{
+\sect\sectd
+\lndscpsxn
+\pgwsxn15840
+\pghsxn12240
+\marglsxn\eval{1440 / #2}
+\margrsxn\eval{1440 / #4}
+\margtsxn\eval{1440 / #3}
+\margbsxn\eval{1440 / #1}
+}
+%%
+%%
+%% This shows how to create a counter
+%% \define{Q}{1}
+%% \defeval{Q}{\eval{\Q + 1}}
+%%  \Q <- Will first show 1
+%% \defeval{Q}{\eval{\Q + 1}}
+%%  \Q <- Will now show 2
+%% If a section defines the subsection counter as zero, then every subsection can increment this counter????
+%%
+%%
+%%
+\define{Title}{
+\titlepg
+{\headerf
+{\pard \cf1 \ql \f1 \fs32 \sb0 \sa120 \b
+#1
+\par}
+{\pard \cf0 \ql \f1 \fs28 \sb60 \sa60
+#2
+\par}
+{\pard \cf0 \ql \f1 \fs24 \sb60 \sa240\date{ %B %d, %Y}\par}
+{\pard \f1 \qr \fs16 {\b Analyses for:}\par}
+{\pard \f1 \qr \fs16 {\b Performed by:}\par}
+{\pard \cf0 \ql \f1 \fs24 \sb60 \sa120 \brdrb \brdrs \brdrw25 \brsp20 \brdrcf3 \par}
+}
+{\footerf\pard \qr \fs20 \f1 #3 | \chpgn\par}
+{\footer\pard \qr \fs20 \f1 #3 | \chpgn\par}
+{\headerf
+{\pard \cf1 \ql \f1 \fs32 \sb0 \sa120 \b
+#1
+\par}
+{\pard \cf0 \ql \f1 \fs28 \sb60 \sa60
+#2
+\par}
+{\pard \cf0 \ql \f1 \fs24 \sb60 \sa240\date{ %B %d, %Y}\par}
+{\pard \f1 \qr \fs16 {\b Analyses for:}\par}
+{\pard \f1 \qr \fs16 {\b Performed by:}\par}
+{\pard \cf0 \ql \f1 \fs24 \sb60 \sa120 \brdrb \brdrs \brdrw25 \brsp20 \brdrcf3 \par}
+}
+}
+%% -----------------------------------------------------------
+%% This is for a a reviewer comment at the level of subsection
+%% ===========================================================
+\define{\reviewerComment}{{\pard \ql \sb120 \sa120 \f1 \fs22 \keepn \b \i \outlinelevel2 
+Comment #1
+\par}}
+
+%%
+%% This is a quoted reviewer comment
+%% 
+\define{\reviewerQuote}{{\pard \sb120 \sa120  \ql \li360 \fi-360 \f0 \fs22 \i \tx360 \tab
+#1
+\par}}
