@@ -13,4 +13,8 @@ and it can be called in the RTF document like this:
 
     This text is \Huge{huge}.
 
+I am using MS Windows so I might process my file like this
 
+    c:\gpp\gpp.exe -o output.rtf -T input.rtf
+
+where the `-T` specifies a Tex-like syntax.
