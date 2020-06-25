@@ -1,0 +1,24 @@
+% Perhaps the mark-up for a report could look like this
+
+\begin{report}
+\fonts{Georgia, Arial, Courier New}
+\colors{...}
+\margins{1}{1}{1}{1}
+
+\title{A report}
+\subtitle{Further information}
+\authors{Stephen Weigand}
+
+\section{Methods}
+\subsection{Participants}
+\paragraph{This is plain paragraph text.}
+
+% Also include multiple kinds of lists, block quotes, etc.
+
+\section{Results}
+
+\section{Discussion}
+
+\appendix{If needed}
+
+\end{report}
