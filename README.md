@@ -2,10 +2,11 @@ gpp-macros
 ==========
 
 Macros for use with [gpp](http://en.nothingisreal.com/wiki/GPP),
-a general purposes macro preprocessor. This is program that
+a general purpose macro preprocessor. GPP is a program that
 allows the user to specify macros with arguments using a customizable
 syntax. I use it to define LaTeX-like macros which are turned into
-RTF code. For example this will make 48 point text:
+RTF code. For example this will define a macro called `\Huge` that
+will create 48 point text:
 
     \define{\Huge}{{\fs96 #1}}
 
